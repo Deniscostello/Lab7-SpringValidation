@@ -10,7 +10,8 @@ public class PersonService {
         System.out.println(person);
     }
 
-    public void getPersonById(personId){
-
+    public Person getPersonById(String personId) {
+        Person newPerson = new Person("John", "John11@gmail.com", personId, 36, "Mr", "Senior Engineer", "Nwm");
+        return newPerson;
     }
 }

@@ -29,7 +29,7 @@ public class PersonController {
         if(person == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(person)
+        return ResponseEntity.ok(person);
     }
 
 
