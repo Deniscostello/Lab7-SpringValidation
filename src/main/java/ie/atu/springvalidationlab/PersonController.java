@@ -2,10 +2,8 @@ package ie.atu.springvalidationlab;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController {
@@ -18,6 +16,22 @@ public class PersonController {
     @PostMapping("/person/createPerson")
     @ResponseStatus(HttpStatus.CREATED)
     public Person createUser(@Valid @RequestBody Person person ){
-        return Person;
+        personService.createPerson(person);
+        return person;
     }
+
+    @GetMapping("/person/{employeeId}")
+    public ResponseEntity<?> getPerson(@PathVariable String employeeId){
+        if(employeeId.length() >5 || employeeId.isBlank()){
+            return ResponseEntity.badRequest().body("EmployeeId is invalid");
+        }
+        Person person = personService.getPersonById(employeeId);
+        if(person == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(person)
+    }
+
+
+
 }

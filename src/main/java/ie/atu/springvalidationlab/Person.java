@@ -14,7 +14,7 @@ public class Person {
     @Email(message = "Invalid email address")
     private String email;
 
-    @Size(min = 10, max = 12, message = "EmployeeId must be between 10 and 12 characters")
+    @Size(min = 1, max = 6, message = "EmployeeId must be between 10 and 12 characters")
     private int employeeId;
 
     @Min(value = 0, message = "Age must be great than 0")
